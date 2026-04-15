@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=Hind+Siliguri:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" />
-<link rel="stylesheet" href="assets/css/tailwind.css?v=9618869" />
-<link rel="stylesheet" href="assets/css/style.css?v=9618869" />
+<link rel="stylesheet" href="assets/css/tailwind.css?v=0481856" />
+<link rel="stylesheet" href="assets/css/style.css?v=0481856" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='19' fill='%23faf7f1' stroke='%230a0a0a'/><path d='M20 1 a19 19 0 0 1 0 38z' fill='%230a0a0a'/><circle cx='20' cy='20' r='3' fill='%23c89b5c'/></svg>" />
 </head>
 <body class="text-ink">
@@ -438,24 +438,72 @@
 
       <div class="lg:col-span-7 reveal">
         <div class="map-wrap">
-          <!-- Stylised outline of Bangladesh (abstract) -->
-          <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M120 40 C 170 30, 230 50, 260 80 C 290 110, 310 140, 330 170 C 350 200, 345 230, 335 260 C 330 280, 345 300, 350 330 C 355 360, 330 400, 290 430 C 250 460, 200 470, 160 455 C 120 440, 95 410, 80 380 C 65 350, 55 310, 60 280 C 65 250, 50 225, 55 195 C 60 165, 85 130, 100 100 C 110 80, 105 55, 120 40 Z"
-                  fill="var(--color-paper-warm)" stroke="var(--color-ink)" stroke-width="1"/>
-            <!-- subtle rivers -->
-            <path d="M130 150 C 160 180, 180 220, 170 260 C 160 300, 190 340, 230 360" stroke="var(--color-sky)" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.5"/>
-            <path d="M250 100 C 260 140, 240 180, 260 220" stroke="var(--color-sky)" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.5"/>
-            <!-- compass -->
-            <g transform="translate(340, 60)" opacity="0.6">
-              <circle r="18" fill="none" stroke="var(--color-ink)" stroke-width="0.8"/>
+          <!-- Real Bangladesh outline (simplified from Natural Earth, 36 vertices) -->
+          <svg viewBox="0 0 500 640" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <filter id="mapPaper" x="-5%" y="-5%" width="110%" height="110%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" seed="3"/>
+                <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0"/>
+                <feComposite in2="SourceGraphic" operator="in"/>
+                <feComposite in2="SourceGraphic" operator="over"/>
+              </filter>
+              <linearGradient id="mapFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f3ede1"/>
+                <stop offset="100%" stop-color="#e9dec7"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Soft drop shadow for depth -->
+            <path d="M490 475 L490 551 L451 535 L458 620 L428 565 L422 511 L402 460 L358 399 L262 395 L272 438 L239 497 L194 475 L179 495 L150 483 L109 474 L93 387 L57 307 L74 244 L10 215 L33 177 L99 138 L23 82 L60 10 L143 56 L193 61 L202 134 L302 149 L399 147 L459 165 L411 255 L364 261 L332 321 L389 376 L406 308 L435 308 Z"
+                  fill="rgba(10,10,10,0.06)" transform="translate(4, 6)"/>
+
+            <!-- Country outline, filled -->
+            <path id="bd-outline"
+                  d="M490 475 L490 551 L451 535 L458 620 L428 565 L422 511 L402 460 L358 399 L262 395 L272 438 L239 497 L194 475 L179 495 L150 483 L109 474 L93 387 L57 307 L74 244 L10 215 L33 177 L99 138 L23 82 L60 10 L143 56 L193 61 L202 134 L302 149 L399 147 L459 165 L411 255 L364 261 L332 321 L389 376 L406 308 L435 308 Z"
+                  fill="url(#mapFill)" stroke="var(--color-ink)" stroke-width="1.2" stroke-linejoin="round"/>
+
+            <!-- Padma + Meghna + Jamuna (schematic river lines) -->
+            <g opacity="0.55" stroke="var(--color-sky-deep)" stroke-width="1.4" fill="none" stroke-linecap="round">
+              <!-- Jamuna coming down from north -->
+              <path d="M150 80 C 175 140, 205 210, 220 290 S 245 370, 260 430" stroke-dasharray="1 5"/>
+              <!-- Padma merging toward Chandpur -->
+              <path d="M80 300 C 140 330, 210 355, 280 370" stroke-dasharray="1 5"/>
+              <!-- Meghna delta to the sea -->
+              <path d="M280 370 C 290 420, 300 470, 310 540" stroke-dasharray="1 5"/>
+            </g>
+
+            <!-- Neighbouring country labels (very subtle) -->
+            <g fill="var(--color-muted)" font-family="Fraunces" font-style="italic" opacity="0.35" font-size="11">
+              <text x="70" y="40">India</text>
+              <text x="410" y="100">India</text>
+              <text x="470" y="290">India</text>
+              <text x="360" y="615">Bay of Bengal</text>
+            </g>
+
+            <!-- Compass -->
+            <g transform="translate(450, 60)" opacity="0.55">
+              <circle r="18" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="0.7"/>
               <path d="M0 -14 L3 0 L0 14 L-3 0 Z" fill="var(--color-ink)"/>
-              <text x="0" y="-20" text-anchor="middle" font-size="8" fill="var(--color-muted)" font-family="Fraunces">N</text>
+              <text x="0" y="-22" text-anchor="middle" font-size="9" fill="var(--color-muted)" font-family="Fraunces">N</text>
             </g>
           </svg>
-          <!-- Pins (approximate positions on the SVG canvas) -->
-          <div class="map-pin" style="top:32%; left:55%"><div class="dot"></div><div class="label">Madhupur · I</div></div>
-          <div class="map-pin" style="top:28%; left:58%"><div class="dot" style="background:var(--color-ink)"></div><div class="label">Dhanbari · II</div></div>
-          <div class="map-pin" style="top:55%; left:52%"><div class="dot" style="background:var(--color-sky-deep)"></div><div class="label">Dhaka · III</div></div>
+
+          <!-- Pins — positions match real coordinates:
+               Madhupur 24.61°N, 90.05°E → 43.2% / 31.3%
+               Dhanbari 24.73°N, 89.93°E → 40.6% / 29.8%
+               Dhaka    23.81°N, 90.41°E → 50.6% / 45.2% -->
+          <div class="map-pin" style="top:31.3%; left:43.2%">
+            <div class="dot"></div>
+            <div class="label">Madhupur · I</div>
+          </div>
+          <div class="map-pin" style="top:29.8%; left:40.6%">
+            <div class="dot" style="background:var(--color-ink)"></div>
+            <div class="label">Dhanbari · II</div>
+          </div>
+          <div class="map-pin" style="top:45.2%; left:50.6%">
+            <div class="dot" style="background:var(--color-sky-deep)"></div>
+            <div class="label">Dhaka · III</div>
+          </div>
         </div>
       </div>
     </div>
@@ -788,6 +836,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=9618869"></script>
+<script src="assets/js/main.js?v=0481856"></script>
 </body>
 </html>
