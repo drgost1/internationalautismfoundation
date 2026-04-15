@@ -1,0 +1,57 @@
+{
+  "_comment": "Maps website slot -> source image index (from metadata.json). Aspect: w/h.",
+  "slots": [
+    { "slot": "logo",            "src": 179, "aspect": null,    "outName": "logo.webp",            "fit": "contain", "bg": "transparent" },
+
+    { "slot": "hero-1",          "src": 177, "aspect": "3/4",   "outName": "hero-1.webp" },
+    { "slot": "hero-2",          "src": 178, "aspect": "4/5",   "outName": "hero-2.webp" },
+    { "slot": "hero-3",          "src": 175, "aspect": "1/1",   "outName": "hero-3.webp" },
+
+    { "slot": "about-hero",      "src": 117, "aspect": "3/4",   "outName": "about-hero.webp" },
+    { "slot": "chairman",        "src": 154, "aspect": "4/5",   "outName": "chairman.webp" },
+
+    { "slot": "team-1",          "src": 154, "aspect": "3/4",   "outName": "team-1.webp" },
+    { "slot": "team-2",          "src": 156, "aspect": "3/4",   "outName": "team-2.webp", "focusY": 0.35 },
+    { "slot": "team-3",          "src": 135, "aspect": "3/4",   "outName": "team-3.webp" },
+    { "slot": "team-4",          "src": 110, "aspect": "3/4",   "outName": "team-4.webp" },
+
+    { "slot": "project-madhupur",   "src": 117, "aspect": "4/5", "outName": "project-madhupur.webp" },
+    { "slot": "project-dhanbari-1", "src": 100, "aspect": "3/4", "outName": "project-dhanbari-1.webp" },
+    { "slot": "project-dhanbari-2", "src": 110, "aspect": "3/4", "outName": "project-dhanbari-2.webp" },
+    { "slot": "project-dhaka",      "src": 60,  "aspect": "4/5", "outName": "project-dhaka.webp" },
+
+    { "slot": "project-1",       "src": 117, "aspect": "4/5",   "outName": "project-1.webp" },
+    { "slot": "project-2",       "src": 100, "aspect": "4/5",   "outName": "project-2.webp" },
+    { "slot": "project-3",       "src": 60,  "aspect": "4/5",   "outName": "project-3.webp" },
+
+    { "slot": "campus-1",        "src": 131, "aspect": "4/5",   "outName": "campus-1.webp" },
+    { "slot": "campus-2",        "src": 145, "aspect": "4/3",   "outName": "campus-2.webp" },
+    { "slot": "campus-3",        "src": 140, "aspect": "5/3",   "outName": "campus-3.webp" },
+    { "slot": "campus-4",        "src": 135, "aspect": "3/5",   "outName": "campus-4.webp" },
+
+    { "slot": "service-education", "src": 135, "aspect": "4/5", "outName": "service-education.webp" },
+    { "slot": "service-health",    "src": 46,  "aspect": "4/5", "outName": "service-health.webp" },
+    { "slot": "service-nutrition", "src": 145, "aspect": "4/5", "outName": "service-nutrition.webp" },
+
+    { "slot": "voice-1",         "src": 125, "aspect": "1/1",   "outName": "voice-1.webp", "focusY": 0.3 },
+    { "slot": "voice-2",         "src": 135, "aspect": "1/1",   "outName": "voice-2.webp", "focusY": 0.3 },
+    { "slot": "voice-3",         "src": 162, "aspect": "1/1",   "outName": "voice-3.webp", "focusY": 0.3 },
+    { "slot": "voice-4",         "src": 154, "aspect": "1/1",   "outName": "voice-4.webp", "focusY": 0.3 },
+
+    { "slot": "gallery-1",  "src": 117, "aspect": "4/5", "outName": "gallery-1.webp" },
+    { "slot": "gallery-2",  "src": 100, "aspect": "1/1", "outName": "gallery-2.webp" },
+    { "slot": "gallery-3",  "src": 177, "aspect": "3/4", "outName": "gallery-3.webp" },
+    { "slot": "gallery-4",  "src": 46,  "aspect": "4/3", "outName": "gallery-4.webp" },
+    { "slot": "gallery-5",  "src": 145, "aspect": "4/5", "outName": "gallery-5.webp" },
+    { "slot": "gallery-6",  "src": 135, "aspect": "1/1", "outName": "gallery-6.webp" },
+    { "slot": "gallery-7",  "src": 175, "aspect": "3/4", "outName": "gallery-7.webp" },
+    { "slot": "gallery-8",  "src": 167, "aspect": "4/3", "outName": "gallery-8.webp" },
+    { "slot": "gallery-9",  "src": 113, "aspect": "4/5", "outName": "gallery-9.webp" },
+    { "slot": "gallery-10", "src": 178, "aspect": "1/1", "outName": "gallery-10.webp" },
+    { "slot": "gallery-11", "src": 162, "aspect": "3/4", "outName": "gallery-11.webp" },
+    { "slot": "gallery-12", "src": 137, "aspect": "4/3", "outName": "gallery-12.webp" },
+    { "slot": "gallery-13", "src": 121, "aspect": "1/1", "outName": "gallery-13.webp" },
+    { "slot": "gallery-14", "src": 140, "aspect": "4/5", "outName": "gallery-14.webp" },
+    { "slot": "gallery-15", "src": 164, "aspect": "3/4", "outName": "gallery-15.webp" }
+  ]
+}

@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+bun.lockb
+bun.lock
+
+# local review + scratch
+_review/
+_scripts/swaps.json
+
+# source originals (keep README only — images can be huge)
+source-images/*
+!source-images/README.txt
+
+# bun defaults
+index.ts
+tsconfig.json
+README.md
+
+# editor / os
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# env / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# logs
+*.log
+npm-debug.log*
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
