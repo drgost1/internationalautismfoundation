@@ -325,7 +325,8 @@ function initJourney() {
     });
     tags.forEach((t, i) => {
       const threshold = parseFloat(markers[i]?.dataset.p || "1");
-      t.classList.toggle("active", p >= threshold - 0.01 && p < threshold + 0.22);
+      const next = parseFloat(markers[i + 1]?.dataset.p ?? "1.5");
+      t.classList.toggle("active", p >= threshold - 0.01 && p < next - 0.01);
     });
   };
   const onScroll = () => {

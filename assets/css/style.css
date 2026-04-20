@@ -886,13 +886,20 @@ body.dyslexia-font .font-serif {
   .year-tags span { font-size: 0.72rem; }
 }
 .journey-step {
-  min-height: 44vh;
-  padding-block: 4vh;
+  min-height: 32vh;
+  padding-block: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-top: 1px solid var(--color-line);
   gap: 0.75rem;
+  opacity: 0.45;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.journey-step.on {
+  opacity: 1;
+  transform: translateY(0);
 }
 .journey-step:first-child { border-top: none; }
 .journey-year {
