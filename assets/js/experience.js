@@ -231,6 +231,44 @@
     }
   });
 
+  /* ----- Polaroid stagger reveal ----- */
+  const polaroidScatter = document.querySelector("[data-polaroids]");
+  if (polaroidScatter) {
+    const cards = polaroidScatter.querySelectorAll(".polaroid");
+    ScrollTrigger.create({
+      trigger: polaroidScatter,
+      start: "top 75%",
+      once: true,
+      onEnter: () => {
+        cards.forEach((p, i) => {
+          setTimeout(() => p.classList.add("in"), i * 140);
+        });
+      },
+    });
+    // Subtle parallax drift on the whole scatter as the section passes
+    gsap.fromTo(polaroidScatter, { y: 40 }, {
+      y: -40, ease: "none",
+      scrollTrigger: {
+        trigger: polaroidScatter,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  }
+
+  /* ----- Film-strip gentle scroll-parallax on enter ----- */
+  const filmStrip = document.querySelector(".film-strip");
+  if (filmStrip) {
+    const intro = filmStrip.querySelector(".film-intro");
+    if (intro) {
+      gsap.from(intro.children, {
+        y: 50, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.14,
+        scrollTrigger: { trigger: filmStrip, start: "top 75%" },
+      });
+    }
+  }
+
   /* ----- Finale ----- */
   const finale = document.querySelector(".finale");
   if (finale) {
