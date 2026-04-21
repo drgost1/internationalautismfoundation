@@ -213,14 +213,14 @@ main, header, footer, nav {
 .nav-root > .container-x > div:last-child { flex-shrink: 0; }
 .nav-root > .container-x > nav { flex-shrink: 0; }
 
-/* Below 1024px: mobile mode — show hamburger, hide nav + support button */
-@media (max-width: 1023.98px) {
+/* Below 1280px: mobile/tablet mode — hamburger only (nav now has 9 items) */
+@media (max-width: 1279.98px) {
   .nav-root > .container-x > nav { display: none !important; }
   .nav-root > .container-x > div:last-child > a.btn { display: none !important; }
   .nav-root > .container-x > div:last-child > button[data-menu-open] { display: flex !important; }
 }
-/* At 1024px+: desktop mode — show nav + support button, hide hamburger */
-@media (min-width: 1024px) {
+/* At 1280px+: desktop mode — full nav + support button, hide hamburger */
+@media (min-width: 1280px) {
   .nav-root > .container-x > nav { display: flex !important; }
   .nav-root > .container-x > div:last-child > a.btn { display: inline-flex !important; }
   .nav-root > .container-x > div:last-child > button[data-menu-open] { display: none !important; }
