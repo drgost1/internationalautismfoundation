@@ -44,7 +44,7 @@ const MEANINGS = {
   "service-education": "SERVICES — Special Education pillar",
   "service-health": "SERVICES — Health Care pillar",
   "service-nutrition": "SERVICES — Nutrition pillar",
-  "voice-1": "VOICE — Rahima Begum, Mother (avatar)",
+  "voice-1": "VOICE — Mina Begum, Divine Mother (avatar)",
   "voice-2": "VOICE — Shahinur Akhtar, Divine Teacher (avatar)",
   "voice-3": "VOICE — Nasrin Sultana, Parent (avatar)",
   "voice-4": "VOICE — Tanvir Hossain, Volunteer (avatar)",
