@@ -24,6 +24,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -32,7 +34,14 @@ body {
   background: var(--color-paper);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
+
+/* Any section with the standard content container must never push the page wider than the viewport */
+main, header, footer, section { max-width: 100%; }
+.container-x { max-width: min(1280px, 100%); }
 
 body.lock {
   overflow: hidden;
