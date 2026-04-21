@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "Understanding autism",
+    "title": "A different way of being in the world.",
+    "subtitle": "Autism is not a tragedy. It is a way the mind meets the world — more keenly, more quietly, more literally. Our divine children see the world whole. Here is a gentle guide for parents, teachers and friends."
+  },
+  "define": {
+    "eyebrow": "§ 01 — What is autism?",
+    "title": "A <span class=\"italic-accent\">neurodevelopmental</span> way of being — present from birth, across the lifetime.",
+    "body": "<p>Autism Spectrum Condition (ASC) is a lifelong way in which the brain processes the world. Our divine children often experience sensations — light, sound, touch, taste — with greater intensity; they may speak later, or communicate in colours and gestures rather than words; they may love routine, love repetition, love the safety of patterns.</p><p>It is called a <em>spectrum</em> because no two children are alike. One may paint the whole sky from memory. One may line up the world by colour. One may speak four languages before they are six. Another may speak with their hands. All of them belong.</p><p>Autism is not something to be <em>cured</em>. It is something to be <em>understood</em>, and to be walked with — patiently, kindly, completely.</p>"
+  },
+  "signs": {
+    "eyebrow": "§ 02 — Signs & traits",
+    "title": "Small clues. <span class=\"italic-accent\">Large worlds inside.</span>",
+    "note": "These are not a checklist. If you recognise some of these in your child and want to talk — call us. Every mother and father is welcome at the Foundation gate."
+  },
+  "stats": {
+    "eyebrow": "§ 03 — What we know",
+    "title": "Numbers are blunt tools, <span class=\"italic-accent\">but they help us hold the work.</span>",
+    "source": "Sources: World Health Organization · Bangladesh Ministry of Health · Foundation records. The numbers move with each new study — we keep them in view but do not let them define a single child."
+  },
+  "help": {
+    "eyebrow": "§ 04 — Walking alongside",
+    "title": "How to be a <span class=\"italic-accent\">gentle companion</span> to a divine child."
+  },
+  "resources": {
+    "eyebrow": "§ 05 — Next steps",
+    "title": "Where to turn <span class=\"italic-accent\">when you are ready.</span>"
+  },
+  "cta": {
+    "title": "Every divine child <span class=\"italic-accent\">deserves to be seen.</span>",
+    "subtitle": "A donation, a volunteering hour, a quiet blessing — each one keeps the school, clinic and kitchen open for another day."
+  }
+}

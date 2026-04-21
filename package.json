@@ -7,6 +7,7 @@
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
     "@types/bun": "latest",
+    "pdfjs-dist": "^5.6.205",
     "tailwindcss": "3"
   },
   "peerDependencies": {

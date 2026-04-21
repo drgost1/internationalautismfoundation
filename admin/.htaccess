@@ -1,0 +1,2 @@
+# Allow the admin PHP scripts to run, block direct listing
+Options -Indexes
