@@ -1,4 +1,4 @@
-/* Quill-powered rich editor + image picker for the admin CMS */
+/* Quill-powered rich editor + image picker + blocks repeater for the admin CMS */
 
 (function () {
   if (typeof Quill === "undefined") { console.warn("Quill not loaded"); return; }
@@ -11,9 +11,10 @@
   AccentBlot.className = "italic-accent";
   Quill.register(AccentBlot, true);
 
-  /* ---------- Init all rich fields ---------- */
-  const wraps = document.querySelectorAll("[data-rich]");
-  wraps.forEach((wrap) => {
+  /* ---------- Init all rich fields (idempotent) ---------- */
+  function initRichWrap(wrap) {
+    if (wrap.__rich_inited) return;
+    wrap.__rich_inited = true;
     const targetId = wrap.getAttribute("data-target");
     const target   = document.getElementById(targetId);
     const isSingle = wrap.getAttribute("data-single") === "1";
@@ -74,7 +75,9 @@
     // Also sync once on submit, just in case
     const form = target.form;
     if (form) form.addEventListener("submit", () => { target.value = normalise(quill.root.innerHTML, isSingle); });
-  });
+  }
+
+  document.querySelectorAll("[data-rich]").forEach(initRichWrap);
 
   // For single-line titles, Quill wraps everything in <p>…</p>. Strip that wrapper.
   function normalise(html, single) {
@@ -150,4 +153,63 @@
       preview.style.visibility = "visible";
     });
   });
+
+  /* ---------- Blocks repeater ---------- */
+  const list = document.querySelector("[data-blocks-list]");
+  const template = document.querySelector("[data-block-template]");
+  const addBtn = document.querySelector("[data-add-block]");
+
+  // Wire up existing blocks
+  list?.querySelectorAll("[data-block]").forEach((el) => wireBlock(el));
+
+  // Add-new handler
+  let nextIdx = list ? list.querySelectorAll("[data-block]").length : 0;
+  addBtn?.addEventListener("click", () => {
+    const html = template.innerHTML.replace(/__INDEX__/g, String(nextIdx++));
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html.trim();
+    const node = tmp.firstElementChild;
+    list.appendChild(node);
+    // Init Quill on the new rich wrappers
+    node.querySelectorAll("[data-rich]").forEach(initRichWrap);
+    // Wire pickers + up/down/delete
+    wireBlock(node);
+    node.querySelectorAll("[data-pick-from-library]").forEach(wirePicker);
+    node.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  function wireBlock(el) {
+    if (el.__wired) return;
+    el.__wired = true;
+    el.querySelector("[data-block-delete]")?.addEventListener("click", () => {
+      if (confirm("Delete this section?")) el.remove();
+    });
+    el.querySelector("[data-block-up]")?.addEventListener("click", () => {
+      const prev = el.previousElementSibling;
+      if (prev && prev.hasAttribute("data-block")) el.parentNode.insertBefore(el, prev);
+    });
+    el.querySelector("[data-block-down]")?.addEventListener("click", () => {
+      const next = el.nextElementSibling;
+      if (next && next.hasAttribute("data-block")) el.parentNode.insertBefore(next, el);
+    });
+    // Live title display
+    const titleArea = el.querySelector("textarea[id^='bt_']");
+    const label = el.querySelector(".block-title-display");
+    const syncLabel = () => {
+      if (!label) return;
+      const t = (titleArea?.value || "").replace(/<[^>]+>/g, "").trim();
+      label.textContent = t || "New section";
+    };
+    if (titleArea) {
+      new MutationObserver(syncLabel).observe(titleArea, { attributes: true, childList: true, subtree: true, characterData: true });
+      setInterval(syncLabel, 700); // Quill updates the value via .value, not DOM
+    }
+  }
+
+  function wirePicker(btn) {
+    btn.addEventListener("click", () => {
+      window.__pickerTarget = btn.getAttribute("data-pick-from-library");
+      document.querySelector("[data-picker]")?.classList.add("open");
+    });
+  }
 })();

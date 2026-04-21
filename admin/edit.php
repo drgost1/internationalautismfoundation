@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       set_by_path($data, $row['key'], $val);
     }
   }
-  // Image uploads
+  // Image uploads (fixed-schema image fields)
   if (!empty($_FILES['img']) && is_array($_FILES['img']['name'])) {
     foreach ($_FILES['img']['name'] as $path => $name) {
       if ($_FILES['img']['error'][$path] !== UPLOAD_ERR_OK) continue;
@@ -48,6 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 
+  // Repeater: custom blocks at bottom of page
+  $blocks = [];
+  if (!empty($_POST['blocks']) && is_array($_POST['blocks'])) {
+    foreach ($_POST['blocks'] as $b) {
+      $title   = trim((string)($b['title']   ?? ''));
+      $body    = trim((string)($b['body']    ?? ''));
+      $eyebrow = trim((string)($b['eyebrow'] ?? ''));
+      $image   = trim((string)($b['image']   ?? ''));
+      $layout  = in_array(($b['layout'] ?? ''), ['text-left','text-right','text-only'], true) ? $b['layout'] : 'text-left';
+      // Strip empties
+      if ($title === '' && $body === '' && $eyebrow === '' && $image === '') continue;
+      $blocks[] = compact('eyebrow', 'title', 'body', 'image', 'layout');
+    }
+  }
+  $data['blocks'] = $blocks;
+
   try {
     save_data($slug, $data, $CFG['data_dir']);
     $saved = true;
@@ -55,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = 'Could not save: ' . $e->getMessage();
   }
 }
+$existingBlocks = is_array($data['blocks'] ?? null) ? $data['blocks'] : [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,6 +176,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         <?php endif; ?>
       <?php endforeach; ?>
+      <h2 class="editor-section">Your own sections</h2>
+      <p class="editor-note">Add any new content below the fixed sections above. Each block becomes its own section on the live page. Reorder by dragging the handle, delete with the × button. Empty blocks are ignored on save.</p>
+
+      <div class="blocks-list" data-blocks-list>
+        <?php foreach ($existingBlocks as $idx => $b):
+          include __DIR__ . '/partials/block.php';
+        endforeach; ?>
+      </div>
+
+      <button type="button" class="btn-ghost add-block" data-add-block>+ Add a new section</button>
+
+      <!-- Hidden template for new blocks; editor.js clones this -->
+      <template data-block-template>
+        <?php $idx = '__INDEX__'; $b = ['eyebrow'=>'','title'=>'','body'=>'','image'=>'','layout'=>'text-left']; include __DIR__ . '/partials/block.php'; ?>
+      </template>
+
       <div class="editor-save">
         <button type="submit" class="btn-primary">Save changes</button>
         <a href="index.php" class="btn-ghost">Cancel</a>

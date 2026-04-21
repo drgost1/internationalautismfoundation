@@ -23,6 +23,66 @@
         el.innerHTML = val;
       }
     });
+
+    // Render any custom blocks the owner added in the CMS
+    if (Array.isArray(data.blocks) && data.blocks.length) renderBlocks(data.blocks);
+  }
+
+  function renderBlocks(blocks) {
+    const slot = document.querySelector("[data-blocks-slot]");
+    if (!slot) return;
+    blocks.forEach((b, i) => slot.appendChild(buildBlock(b, i)));
+    // Re-run the site's reveal observer on fresh nodes
+    if (typeof IntersectionObserver !== "undefined") {
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: "0px 0px -5% 0px" });
+      slot.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    }
+  }
+
+  function buildBlock(b, i) {
+    const section = document.createElement("section");
+    section.className = "section-pad";
+    if (i % 2 === 1) section.style.background = "var(--color-paper-warm)";
+
+    const container = document.createElement("div");
+    container.className = "container-x";
+    section.appendChild(container);
+
+    if (b.layout === "text-only" || !b.image) {
+      container.innerHTML = `
+        <div class="max-w-3xl mx-auto text-center reveal">
+          ${b.eyebrow ? `<p class="eyebrow">${b.eyebrow}</p>` : ""}
+          <h2 class="font-serif t-1 mt-5 text-balance">${b.title || ""}</h2>
+          <div class="editorial mt-8 text-left">${b.body || ""}</div>
+        </div>`;
+      return section;
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "grid lg:grid-cols-12 gap-10 lg:gap-20 items-center";
+    container.appendChild(grid);
+
+    const imgCol = document.createElement("div");
+    imgCol.className = "lg:col-span-5 reveal";
+    imgCol.innerHTML = `<div class="rounded-3xl overflow-hidden aspect-[4/5] shine"><img src="${b.image}" alt="" class="w-full h-full object-cover"/></div>`;
+
+    const textCol = document.createElement("div");
+    textCol.className = "lg:col-span-7";
+    textCol.innerHTML = `
+      ${b.eyebrow ? `<p class="eyebrow">${b.eyebrow}</p>` : ""}
+      <h2 class="font-serif t-1 mt-5 text-balance">${b.title || ""}</h2>
+      <div class="mt-6 text-lg text-[color:var(--color-muted)] max-w-prose-lg editorial">${b.body || ""}</div>`;
+
+    if (b.layout === "text-right") {
+      textCol.classList.add("order-1", "lg:order-1");
+      imgCol.classList.add("order-2", "lg:order-2");
+      grid.append(textCol, imgCol);
+    } else {
+      grid.append(imgCol, textCol);
+    }
+    return section;
   }
   function getByPath(obj, path) {
     return path.split(".").reduce((a, k) => (a == null ? a : a[k]), obj);

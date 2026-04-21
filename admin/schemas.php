@@ -1,6 +1,8 @@
 <?php
 // Schema: defines the fields each page exposes in the admin UI.
 // Each field: ['key' => 'dot.path', 'label' => 'Label', 'type' => 'text|textarea|image|html', 'help' => '']
+// Every page automatically gets a "blocks" repeater at the bottom so
+// the owner can add unlimited new sections beneath the fixed schema.
 return [
 
   'publications' => [
