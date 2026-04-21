@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCursor();
   initSensory();
   initJourney();
+  initTimeline();
   initTilt();
   initInkDraw();
   initAccordion();
@@ -334,6 +335,46 @@ function initJourney() {
       requestAnimationFrame(update);
       ticking = true;
     }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+}
+
+/* ---------- Timeline: progressive line + per-item reveal ---------- */
+function initTimeline() {
+  const track = document.querySelector("[data-timeline]");
+  if (!track) return;
+  const items = track.querySelectorAll(".timeline-item");
+  if (!items.length) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+  );
+  items.forEach((el) => io.observe(el));
+
+  // Scroll-driven gold line fill
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const rect = track.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Progress 0 when track top hits ~70% of viewport,
+    //          1 when track bottom leaves top ~30%.
+    const raw = (vh * 0.7 - rect.top) / (rect.height - vh * 0.4);
+    const p = Math.max(0, Math.min(1, raw));
+    track.style.setProperty("--progress", p.toFixed(3));
+  };
+  const onScroll = () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", update);
