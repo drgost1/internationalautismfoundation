@@ -2,23 +2,9 @@ import sharp from "sharp";
 
 const jobs = [
   {
-    src: "source-images/verified/!-- ========== LEADERSHIP  TEAM ========== --/masudrana.jpeg",
-    out: "assets/images/team-1.webp",
-    w: 1200,
-    h: 1600,
-    position: "attention",
-  },
-  {
-    src: "source-images/verified/!-- ========== LEADERSHIP  TEAM ========== --/coordinator.jpeg",
-    out: "assets/images/team-2.webp",
-    w: 1200,
-    h: 1600,
-    position: "centre",
-  },
-  {
-    src: "source-images/verified/!-- ========== LEADERSHIP  TEAM ========== --/WhatsApp Image 2026-04-16 at 8.21.18 PM.jpeg",
-    out: "assets/images/team-3.webp",
-    w: 1200,
+    src: "C:/Users/drgos_5ax3dfg/.claude/image-cache/798bbe11-d0ce-4be8-ba86-c6d95f4e81a9/28.jpeg",
+    out: "assets/images/chairman.webp",
+    w: 1280,
     h: 1600,
     position: "attention",
   },
@@ -30,5 +16,5 @@ for (const job of jobs) {
     .webp({ quality: 85, effort: 5 })
     .toFile(job.out);
   const meta = await sharp(job.out).metadata();
-  console.log(`wrote ${job.out} (${meta.width}x${meta.height}, ${meta.size || "?"}B)`);
+  console.log(`wrote ${job.out} (${meta.width}x${meta.height})`);
 }
