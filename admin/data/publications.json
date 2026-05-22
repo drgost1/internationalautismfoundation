@@ -8,7 +8,7 @@
     "eyebrow": "§ I — Daily Newspaper",
     "title": "The Daily <span class=\"italic-accent\">Black &amp; White.</span>",
     "description": "The Daily Black & White is a sister concern of the International Autism Foundation — a voice kept alive by charity, freely given to our divine children with autism. Every taka earned is returned to the sustainable development of our children through Special Education, Health Care and Nutrition.",
-    "type": "Daily newspaper · English & Bangla",
+    "type": "Daily English Newspaper",
     "readership": "Free of cost for all divine children & families",
     "purpose": "Revenue directed to Special Education, Health Care & Nutrition",
     "image": "assets/images/pub-daily-bw.webp"
@@ -18,7 +18,7 @@
     "title": "The Daily <span class=\"italic-accent\">Human Rights.</span>",
     "title_bn": "দি ডেইলি হিউমান রাইটস",
     "description": "A second daily, free for our divine children with autism and their families. Like its sister paper, every earning is spent on the sustainable development of divine children through Special Education, Health Care and Nutrition.",
-    "languages": "Bangla & English",
+    "languages": "Bangla",
     "focus": "Stories of those the world forgets",
     "circulation": "Free for the Foundation's families",
     "image": "assets/images/pub-daily-hr.webp"
