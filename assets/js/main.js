@@ -129,6 +129,15 @@ function initCounters() {
   const els = document.querySelectorAll("[data-count]");
   if (!els.length) return;
 
+  els.forEach((el) => {
+    if (el.dataset.countSince) {
+      const startYear = parseInt(el.dataset.countSince, 10);
+      if (!Number.isNaN(startYear)) {
+        el.dataset.count = String(Math.max(0, new Date().getFullYear() - startYear));
+      }
+    }
+  });
+
   const run = (el) => {
     const target = parseInt(el.dataset.count, 10);
     const duration = 1600;
