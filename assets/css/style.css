@@ -416,7 +416,7 @@ body.lock .sensory-panel {
   display: flex;
   gap: 3.5rem;
   white-space: nowrap;
-  animation: marquee 34s linear infinite;
+  animation: marquee 70s linear infinite;
   font-family: "Fraunces", serif;
   font-size: 1.6rem;
   font-style: italic;
