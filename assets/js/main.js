@@ -133,7 +133,7 @@ function initCounters() {
     if (el.dataset.countSince) {
       const startYear = parseInt(el.dataset.countSince, 10);
       if (!Number.isNaN(startYear)) {
-        el.dataset.count = String(Math.max(0, new Date().getFullYear() - startYear));
+        el.dataset.count = String(Math.max(0, new Date().getFullYear() - startYear + 1));
       }
     }
   });
