@@ -432,7 +432,7 @@ body.lock .sensory-panel {
   flex-shrink: 0;
 }
 @keyframes marquee {
-  to { transform: translateX(-50%); }
+  to { transform: translateX(calc(-50% - 1.75rem)); }
 }
 
 /* Image tint for grayscale + warm duotone */
