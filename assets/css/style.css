@@ -414,25 +414,28 @@ body.lock .sensory-panel {
 }
 .marquee-track {
   display: flex;
-  gap: 3.5rem;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   white-space: nowrap;
   animation: marquee 70s linear infinite;
   font-family: "Fraunces", serif;
-  font-size: 1.6rem;
+  /* Fluid size so even the longest phrase ("…School College University of Humanity")
+     fits within the screen width on phones and reads in full as it scrolls. */
+  font-size: clamp(0.8rem, 3.4vw, 1.6rem);
   font-style: italic;
   font-weight: 300;
 }
 .marquee-track span {
   display: inline-flex;
   align-items: center;
-  gap: 3.5rem;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
 }
 .marquee-track svg {
   color: var(--color-gold);
   flex-shrink: 0;
 }
 @keyframes marquee {
-  to { transform: translateX(calc(-50% - 1.75rem)); }
+  /* offset = half the inter-span gap, so the duplicated span loops seamlessly */
+  to { transform: translateX(calc(-50% - clamp(0.75rem, 2vw, 1.75rem))); }
 }
 
 /* Image tint for grayscale + warm duotone */
